@@ -21,12 +21,18 @@ import java.awt.Font;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
-public class CalculatriceSamSar {
+public class CalculatorSamSar {
 
 	//Attribut prive: frame de type JFame
 	// Cela permet de créer une frame c'est à dire le cadre de l'application.
 	private JFrame frame;
 
+	float firstNum;
+	float secondNum;
+	float result;
+	char symbole;
+	String answer;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -35,7 +41,7 @@ public class CalculatriceSamSar {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					CalculatriceSamSar window = new CalculatriceSamSar();
+					CalculatorSamSar window = new CalculatorSamSar();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -48,7 +54,7 @@ public class CalculatriceSamSar {
 	 * Create the application.
 	 */
 	// Constructeur qui est appele dans le main 
-	public CalculatriceSamSar() {
+	public CalculatorSamSar() {
 //		initialize();
 		calculatriceBtn();
 	}
@@ -94,7 +100,7 @@ public class CalculatriceSamSar {
 //	}
 	
 	private void calculatriceBtn() {
-		frame = new JFrame();
+		frame = new JFrame("Calculator SamSar");
 		frame.getContentPane().setBackground(Color.WHITE);
 		
 		JPanel panel = new JPanel();
@@ -109,63 +115,190 @@ public class CalculatriceSamSar {
 		panel.add(panel_1);
 		panel_1.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("0123456789");
-		lblNewLabel.setBounds(6, 6, 291, 68);
-		panel_1.add(lblNewLabel);
-		lblNewLabel.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNewLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 25));
-		lblNewLabel.setForeground(Color.BLACK);
-		lblNewLabel.setBackground(Color.BLACK);
+	// display
+		JLabel displayScreen = new JLabel();
+		displayScreen.setBounds(6, 6, 291, 68);
+		panel_1.add(displayScreen);
+		displayScreen.setHorizontalAlignment(SwingConstants.RIGHT);
+		displayScreen.setFont(new Font("Lucida Grande", Font.PLAIN, 25));
+		displayScreen.setForeground(Color.BLACK);
+		displayScreen.setBackground(Color.BLACK);
+		
+		/**
+		 * Block of the buttons	
+		 */
+
 		
 		JPanel panel_2 = new JPanel();
 		panel_2.setBounds(6, 150, 338, 327);
-		panel.add(panel_2);
+		panel.add(panel_2);		
+		
+		/**
+		 * The Buttons of Numbers
+		 */
+				
+		JButton btn0 = new JButton("0");
+		btn0.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String EnterNumber = displayScreen.getText() + btn0.getText();
+				displayScreen.setText(EnterNumber); 
+			}
+		});
+		
+		
+				JButton btn1 = new JButton("1");
+		btn1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String EnterNumber = displayScreen.getText() + btn1.getText();
+				displayScreen.setText(EnterNumber); 
+			}
+			
+		});		
+		
+		JButton btn2 = new JButton("2");
+		btn2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String EnterNumber = displayScreen.getText() + btn2.getText();
+				displayScreen.setText(EnterNumber); 
+			}
+		});		
+		
+		JButton btn3 = new JButton("3");
+		btn3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String EnterNumber = displayScreen.getText() + btn3.getText();
+				displayScreen.setText(EnterNumber); 
+			}
+		});
+		
+		JButton btn4 = new JButton("4");
+		btn4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String EnterNumber = displayScreen.getText() + btn4.getText();
+				displayScreen.setText(EnterNumber); 
+			}
+		}); 
+		
+		JButton btn5 = new JButton("5");
+		btn5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String EnterNumber = displayScreen.getText() + btn5.getText();
+				displayScreen.setText(EnterNumber); 
+			}
+		}); 
+		
+		JButton btn6 = new JButton("6");
+		btn6.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String EnterNumber = displayScreen.getText() + btn6.getText();
+				displayScreen.setText(EnterNumber); 
+			}
+		}); 
+		
+		JButton btn7 = new JButton("7");
+		 btn7.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					String EnterNumber = displayScreen.getText() + btn7.getText();
+					displayScreen.setText(EnterNumber); 
+				}
+			}); 
+		 
+		JButton btn8 = new JButton("8");
+		btn8.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String EnterNumber = displayScreen.getText() + btn8.getText();
+				displayScreen.setText(EnterNumber); 
+			}
+		});  
+		
+		JButton btn9 = new JButton("9");
+		btn9.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String EnterNumber = displayScreen.getText() + btn9.getText();
+				displayScreen.setText(EnterNumber); 
+			}
+		}); 
+ 		
+		/**
+		 * The Buttons of Fonctions
+		 */
 		
 		JButton btnMRC = new JButton("MRC");
+		btnMRC.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		}); 
 		
 		JButton btnM_plus = new JButton("M+");
+		btnM_plus.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		}); 
 		
 		JButton btnM_sub = new JButton("M-");
+		btnM_sub.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});  
 		
 		JButton btnCE = new JButton("CE");
+		btnCE.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String backSpace = null;
+				if(displayScreen.getText().length() > 0) {
+					StringBuilder strB = new StringBuilder(displayScreen.getText()); 
+					strB.deleteCharAt(displayScreen.getText().length()-1);
+					backSpace = strB.toString();
+					displayScreen.setText(backSpace);
+				}
+			}
+		}); 
 		
 		JButton btnON_C = new JButton("ON/C");
 		btnON_C.setForeground(Color.RED);
 		btnON_C.setBackground(Color.RED);
-		
-		JButton btn7 = new JButton("7");
-		
-		JButton btn8 = new JButton("8");
-		
-		JButton btn9 = new JButton("9");
+		btnON_C.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				displayScreen.setText("");
+			}
+		}); 
 		
 		JButton btnPercent = new JButton("%");
+		btnPercent.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				firstNum = Float.parseFloat(displayScreen.getText());
+				displayScreen.setText("");
+				symbole = '%';
+			}
+		}); 	
 		
-		JButton btnSQRT = new JButton("√ A");
-		
-		JButton btn4 = new JButton("4");
-		
-		JButton btn5 = new JButton("5");
-		
-		JButton btn6 = new JButton("6");
+		JButton btnSQRT = new JButton("√A");
+		btnSQRT.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				firstNum = Float.parseFloat(displayScreen.getText());
+				displayScreen.setText("");
+				symbole = '√';
+			}
+		}); 
 		
 		JButton btnMulti = new JButton("x");
-		
-		JButton btnNewButton_4_1_1 = new JButton("New button");
+		btnMulti.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				firstNum = Float.parseFloat(displayScreen.getText());
+				displayScreen.setText("");
+				symbole = 'x';
+			}
+		});
 		
 		JButton btnPlusSub = new JButton("+/-");
 		btnPlusSub.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				float ops  = Float.parseFloat(String.valueOf(displayScreen.getText()));
+				ops = ops*(-1);
+				displayScreen.setText(String.valueOf(ops));
+				symbole = '%';
 			}
 		});
-		
-		JButton btn3 = new JButton("3");
-		
-		JButton btn2 = new JButton("2");
-		
-		JButton btn1 = new JButton("1");
-		
-		JButton btn0 = new JButton("0");
 		
 		JButton btnDot = new JButton(".");
 		btnDot.addActionListener(new ActionListener() {
@@ -176,22 +309,65 @@ public class CalculatriceSamSar {
 		JButton btnDev = new JButton("÷");
 		btnDev.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				firstNum = Float.parseFloat(displayScreen.getText());
+				displayScreen.setText("");
+				symbole = '÷';
 			}
 		});
 		
 		JButton btnEgal = new JButton("=");
 		btnEgal.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				String answer;
+				secondNum = Float.parseFloat(displayScreen.getText());
+				if(symbole == '+') {
+					result = firstNum + secondNum;
+					answer = String.format("%2f", result);
+					displayScreen.setText(answer);
+				} else if (symbole == '-') {
+					result = firstNum - secondNum;
+					answer = String.format("%2f", result);
+					displayScreen.setText(answer);
+				} else if (symbole == 'x') {
+					result = firstNum*secondNum;
+					answer = String.format("%2f", result);
+					displayScreen.setText(answer);
+				} else if (symbole == '÷') {
+					result = firstNum/secondNum;
+					answer = String.format("%2f", result);
+					displayScreen.setText(answer);
+				}
+				else if (symbole == '%') {
+					result = firstNum/100;
+					answer = String.format("%2f", result);
+					displayScreen.setText(answer);
+				}
+				else if (symbole == '√') {
+					result = (float) Math.sqrt(firstNum);
+					answer = String.format("%2f", result);
+					displayScreen.setText(answer);
+				}
+				
 			}
 		});
 		
 		JButton btnSub = new JButton("-");
 		btnSub.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				firstNum = Float.parseFloat(displayScreen.getText());
+				displayScreen.setText("");
+				symbole = '-';
 			}
 		});
 		
 		JButton btnPlus = new JButton("+");
+		btnPlus.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				firstNum = Float.parseFloat(displayScreen.getText());
+				displayScreen.setText("");
+				symbole = '+';
+			}
+		});
 		GroupLayout gl_panel_2 = new GroupLayout(panel_2);
 		gl_panel_2.setHorizontalGroup(
 			gl_panel_2.createParallelGroup(Alignment.LEADING)
@@ -247,13 +423,10 @@ public class CalculatriceSamSar {
 									.addComponent(btnPlus, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)))
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addGroup(gl_panel_2.createParallelGroup(Alignment.LEADING)
-								.addGroup(gl_panel_2.createSequentialGroup()
-									.addComponent(btnDev, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(btnNewButton_4_1_1, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE))
+								.addComponent(btnDev, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
 								.addComponent(btnSub, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
 								.addComponent(btnEgal, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE))))
-					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+					.addContainerGap(8, Short.MAX_VALUE))
 		);
 		gl_panel_2.setVerticalGroup(
 			gl_panel_2.createParallelGroup(Alignment.LEADING)
@@ -279,8 +452,7 @@ public class CalculatriceSamSar {
 								.addComponent(btn4, GroupLayout.PREFERRED_SIZE, 58, GroupLayout.PREFERRED_SIZE)
 								.addComponent(btn5, GroupLayout.PREFERRED_SIZE, 58, GroupLayout.PREFERRED_SIZE)
 								.addComponent(btn6, GroupLayout.PREFERRED_SIZE, 58, GroupLayout.PREFERRED_SIZE)
-								.addComponent(btnMulti, GroupLayout.PREFERRED_SIZE, 58, GroupLayout.PREFERRED_SIZE)
-								.addComponent(btnNewButton_4_1_1, GroupLayout.PREFERRED_SIZE, 58, GroupLayout.PREFERRED_SIZE))
+								.addComponent(btnMulti, GroupLayout.PREFERRED_SIZE, 58, GroupLayout.PREFERRED_SIZE))
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addGroup(gl_panel_2.createParallelGroup(Alignment.LEADING)
 								.addComponent(btn1, GroupLayout.PREFERRED_SIZE, 58, GroupLayout.PREFERRED_SIZE)
