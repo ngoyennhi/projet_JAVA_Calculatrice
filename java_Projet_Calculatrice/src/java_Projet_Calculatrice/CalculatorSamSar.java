@@ -303,9 +303,9 @@ public class CalculatorSamSar {
 		btnDot.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 		          firstNum = Double.parseDouble(displayScreen.getText());
-		          displayScreen.setText(firstNum+".");
+		          String num_tmp = displayScreen.getText()+".";
+		          displayScreen.setText(num_tmp);
 		      	  symbole = ".";
-		      	
 			}
 		});
 		
@@ -355,6 +355,7 @@ public class CalculatorSamSar {
 					answer = String.format("%2f", result);
 					displayScreen.setText(answer);
 				}
+				
 				
 			}
 		});
