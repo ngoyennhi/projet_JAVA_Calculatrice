@@ -220,6 +220,20 @@ public class CalculatorSamSar {
 			}
 		}); 
  		
+		
+		JButton btnDot = new JButton(".");
+		btnDot.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(displayScreen.getText()=="") {
+					displayScreen.setText("ERROR");
+				}
+				else {
+					String EnterNumber = displayScreen.getText() + ".";
+					displayScreen.setText(EnterNumber); 
+				}
+			
+			}
+		});
 		/**
 		 * The Buttons of Fonctions
 		 */
@@ -243,7 +257,11 @@ public class CalculatorSamSar {
 		btnON_C.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				displayScreen.setText("");
-				
+			firstNum = 0;
+			secondNum = 0;
+			result = 0;
+			symbole = "";
+			answer = "";
 			}
 		}); 
 		
@@ -251,7 +269,7 @@ public class CalculatorSamSar {
 		btnPercent.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				firstNum = Double.parseDouble(displayScreen.getText());
-				symbole = "%";
+				displayScreen.setText(String.valueOf(firstNum/100));
 			}
 		}); 	
 		
@@ -259,7 +277,7 @@ public class CalculatorSamSar {
 		btnSQRT.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				firstNum = Double.parseDouble(displayScreen.getText());
-				symbole = "√";
+				displayScreen.setText(String.valueOf(Math.sqrt(firstNum)));
 			}
 		}); 
 		
@@ -276,6 +294,7 @@ public class CalculatorSamSar {
 		btnPlus.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				firstNum = Double.parseDouble(displayScreen.getText());
+				displayScreen.setText("");
 				symbole = "+";
 			}
 		});
@@ -283,6 +302,7 @@ public class CalculatorSamSar {
 		btnMulti.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				firstNum = Double.parseDouble(displayScreen.getText());
+				displayScreen.setText("");
 				symbole = "x";
 			}
 		});
@@ -297,21 +317,6 @@ public class CalculatorSamSar {
 			}
 		});
 		
-		JButton btnDot = new JButton(".");
-		btnDot.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(displayScreen.getText()=="") {
-					displayScreen.setText("ERROR");
-				}
-				else {
-				String num_tmp = displayScreen.getText();
-		          num_tmp = displayScreen.getText().concat(".");
-		          displayScreen.setText(num_tmp);
-		      	  symbole = ".";
-				}
-			
-			}
-		});
 	
 		 
 		JButton btnDev = new JButton("÷");
@@ -319,6 +324,7 @@ public class CalculatorSamSar {
 			public void actionPerformed(ActionEvent e) {
 			      try{
 			          firstNum = Double.parseDouble(displayScreen.getText());
+			          displayScreen.setText("");
 				symbole = "÷";
 			        } catch(ArithmeticException z) {
 			        	displayScreen.setText("0");
@@ -335,40 +341,23 @@ public class CalculatorSamSar {
 				if(symbole == "+") {
 					result = firstNum + secondNum;
 					displayScreen.setText(String.valueOf(result));
+					
 				} else if (symbole == "-") {
 					result = firstNum - secondNum;
 					answer = String.format("%.2f", result);
 					displayScreen.setText(answer);
-					
-			
+	
 				} else if (symbole == "x") {
 					result = firstNum*secondNum;
 					answer = String.format("%.2f", result);
-					
+					displayScreen.setText(answer);
 				
 				} else if (symbole == "÷") {
 					result = firstNum/secondNum;
 					answer = String.format("%.2f", result);
 					displayScreen.setText(answer);
-				
-				}
-				else if (symbole == "%") {
-					result = firstNum/100;
-					answer = String.format("%.2f", result);
-					displayScreen.setText(answer);
+				} 
 			
-				}
-				else if (symbole == "√") {
-					result = Math.sqrt(firstNum);
-					answer = String.format("%.2f", result);
-					displayScreen.setText(answer);
-		
-				}
-				  System.out.println(firstNum);
-				  System.out.println(secondNum);
-				  //System.out.println(String.format("%f", firstNum+secondNum));
-				  System.out.println(result);
-
 			}
 		});
 		
@@ -391,6 +380,7 @@ public class CalculatorSamSar {
 				
 			}
 		});  
+		
 		
 
 		GroupLayout gl_panel_2 = new GroupLayout(panel_2);
