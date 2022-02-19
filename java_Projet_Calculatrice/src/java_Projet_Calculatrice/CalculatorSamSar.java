@@ -24,19 +24,20 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 public class CalculatorSamSar {
 
 	//Attribut prive: frame de type JFame
-	// Cela permet de créer une frame c'est à dire le cadre de l'application.
+	// Cela permet de créer une frame c"est à dire le cadre de l"application.
 	private JFrame frame;
 
-	float firstNum;
-	float secondNum;
-	float result;
-	char symbole;
+	double firstNum;
+	double secondNum;
+	double result;
+	String symbole;
 	String answer;
+	private boolean clicOperation = false, update = false;
 	
 	/**
 	 * Launch the application.
 	 */
-	//Methode main qui est lancer pour l'execution du programme
+	//Methode main qui est lancer pour l"execution du programme
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -87,7 +88,7 @@ public class CalculatorSamSar {
 //		JButton btnNewButton = new JButton("OK");
 //		btnNewButton.addActionListener(new ActionListener() {
 //			public void actionPerformed(ActionEvent e) {
-//				//On stock le contenu de l'input dans la valeur title qui est de type string avec getText()
+//				//On stock le contenu de l"input dans la valeur title qui est de type string avec getText()
 //
 //				  String title = input_title.getText();   
 //				  // On modifie le texte du label dont le nom de variable est label_title avec setTitle()
@@ -266,52 +267,58 @@ public class CalculatorSamSar {
 		JButton btnPercent = new JButton("%");
 		btnPercent.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				firstNum = Float.parseFloat(displayScreen.getText());
-				displayScreen.setText("");
-				symbole = '%';
+				firstNum = Double.parseDouble(displayScreen.getText());
+				symbole = "%";
 			}
 		}); 	
 		
 		JButton btnSQRT = new JButton("√A");
 		btnSQRT.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				firstNum = Float.parseFloat(displayScreen.getText());
-				displayScreen.setText("");
-				symbole = '√';
+				firstNum = Double.parseDouble(displayScreen.getText());
+				symbole = "√";
 			}
 		}); 
 		
 		JButton btnMulti = new JButton("x");
 		btnMulti.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				firstNum = Float.parseFloat(displayScreen.getText());
+				firstNum = Double.parseDouble(displayScreen.getText());
 				displayScreen.setText("");
-				symbole = 'x';
+				symbole = "x";
 			}
 		});
 		
 		JButton btnPlusSub = new JButton("+/-");
 		btnPlusSub.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				float ops  = Float.parseFloat(String.valueOf(displayScreen.getText()));
+				double ops  = Double.parseDouble(String.valueOf(displayScreen.getText()));
 				ops = ops*(-1);
 				displayScreen.setText(String.valueOf(ops));
-				symbole = '%';
+				symbole = "+/-";
 			}
 		});
 		
 		JButton btnDot = new JButton(".");
 		btnDot.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+		          firstNum = Double.parseDouble(displayScreen.getText());
+		          displayScreen.setText(firstNum+".");
+		      	  symbole = ".";
+		      	
 			}
 		});
 		
 		JButton btnDev = new JButton("÷");
 		btnDev.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				firstNum = Float.parseFloat(displayScreen.getText());
+			      try{
+			          firstNum = Double.parseDouble(displayScreen.getText());
 				displayScreen.setText("");
-				symbole = '÷';
+				symbole = "÷";
+			        } catch(ArithmeticException z) {
+			        	displayScreen.setText("0");
+			        }
 			}
 		});
 		
@@ -319,31 +326,32 @@ public class CalculatorSamSar {
 		btnEgal.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String answer;
-				secondNum = Float.parseFloat(displayScreen.getText());
-				if(symbole == '+') {
+				secondNum = Double.parseDouble(displayScreen.getText());
+				if(symbole == "+") {
 					result = firstNum + secondNum;
 					answer = String.format("%2f", result);
 					displayScreen.setText(answer);
-				} else if (symbole == '-') {
+				
+				} else if (symbole == "-") {
 					result = firstNum - secondNum;
 					answer = String.format("%2f", result);
 					displayScreen.setText(answer);
-				} else if (symbole == 'x') {
+				} else if (symbole == "x") {
 					result = firstNum*secondNum;
 					answer = String.format("%2f", result);
 					displayScreen.setText(answer);
-				} else if (symbole == '÷') {
+				} else if (symbole == "÷") {
 					result = firstNum/secondNum;
 					answer = String.format("%2f", result);
 					displayScreen.setText(answer);
 				}
-				else if (symbole == '%') {
+				else if (symbole == "%") {
 					result = firstNum/100;
 					answer = String.format("%2f", result);
 					displayScreen.setText(answer);
 				}
-				else if (symbole == '√') {
-					result = (float) Math.sqrt(firstNum);
+				else if (symbole == "√") {
+					result = Math.sqrt(firstNum);
 					answer = String.format("%2f", result);
 					displayScreen.setText(answer);
 				}
@@ -354,18 +362,18 @@ public class CalculatorSamSar {
 		JButton btnSub = new JButton("-");
 		btnSub.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				firstNum = Float.parseFloat(displayScreen.getText());
+				firstNum = Double.parseDouble(displayScreen.getText());
 				displayScreen.setText("");
-				symbole = '-';
+				symbole = "-";
 			}
 		});
 		
 		JButton btnPlus = new JButton("+");
 		btnPlus.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				firstNum = Float.parseFloat(displayScreen.getText());
+				firstNum = Double.parseDouble(displayScreen.getText());
 				displayScreen.setText("");
-				symbole = '+';
+				symbole = "+";
 			}
 		});
 		GroupLayout gl_panel_2 = new GroupLayout(panel_2);
