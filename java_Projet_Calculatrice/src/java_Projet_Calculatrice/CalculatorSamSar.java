@@ -224,24 +224,6 @@ public class CalculatorSamSar {
 		 * The Buttons of Fonctions
 		 */
 		
-		JButton btnMRC = new JButton("MRC");
-		btnMRC.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		}); 
-		
-		JButton btnM_plus = new JButton("M+");
-		btnM_plus.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		}); 
-		
-		JButton btnM_sub = new JButton("M-");
-		btnM_sub.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});  
-		
 		JButton btnCE = new JButton("CE");
 		btnCE.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -261,6 +243,7 @@ public class CalculatorSamSar {
 		btnON_C.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				displayScreen.setText("");
+				
 			}
 		}); 
 		
@@ -280,11 +263,26 @@ public class CalculatorSamSar {
 			}
 		}); 
 		
+		JButton btnSub = new JButton("-");
+		btnSub.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				firstNum = Double.parseDouble(displayScreen.getText());
+				displayScreen.setText("");
+				symbole = "-";
+			}
+		});
+		
+		JButton btnPlus = new JButton("+");
+		btnPlus.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				firstNum = Double.parseDouble(displayScreen.getText());
+				symbole = "+";
+			}
+		});
 		JButton btnMulti = new JButton("x");
 		btnMulti.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				firstNum = Double.parseDouble(displayScreen.getText());
-				displayScreen.setText("");
 				symbole = "x";
 			}
 		});
@@ -302,19 +300,25 @@ public class CalculatorSamSar {
 		JButton btnDot = new JButton(".");
 		btnDot.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-		          firstNum = Double.parseDouble(displayScreen.getText());
-		          String num_tmp = displayScreen.getText()+".";
+				if(displayScreen.getText()=="") {
+					displayScreen.setText("ERROR");
+				}
+				else {
+				String num_tmp = displayScreen.getText();
+		          num_tmp = displayScreen.getText().concat(".");
 		          displayScreen.setText(num_tmp);
 		      	  symbole = ".";
+				}
+			
 			}
 		});
-		
+	
+		 
 		JButton btnDev = new JButton("÷");
 		btnDev.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			      try{
 			          firstNum = Double.parseDouble(displayScreen.getText());
-				displayScreen.setText("");
 				symbole = "÷";
 			        } catch(ArithmeticException z) {
 			        	displayScreen.setText("0");
@@ -325,58 +329,70 @@ public class CalculatorSamSar {
 		JButton btnEgal = new JButton("=");
 		btnEgal.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String answer;
+				String answer ="";
+				result = 0;
 				secondNum = Double.parseDouble(displayScreen.getText());
 				if(symbole == "+") {
 					result = firstNum + secondNum;
-					answer = String.format("%2f", result);
-					displayScreen.setText(answer);
-				
+					displayScreen.setText(String.valueOf(result));
 				} else if (symbole == "-") {
 					result = firstNum - secondNum;
-					answer = String.format("%2f", result);
+					answer = String.format("%.2f", result);
 					displayScreen.setText(answer);
+					
+			
 				} else if (symbole == "x") {
 					result = firstNum*secondNum;
-					answer = String.format("%2f", result);
-					displayScreen.setText(answer);
+					answer = String.format("%.2f", result);
+					
+				
 				} else if (symbole == "÷") {
 					result = firstNum/secondNum;
-					answer = String.format("%2f", result);
+					answer = String.format("%.2f", result);
 					displayScreen.setText(answer);
+				
 				}
 				else if (symbole == "%") {
 					result = firstNum/100;
-					answer = String.format("%2f", result);
+					answer = String.format("%.2f", result);
 					displayScreen.setText(answer);
+			
 				}
 				else if (symbole == "√") {
 					result = Math.sqrt(firstNum);
-					answer = String.format("%2f", result);
+					answer = String.format("%.2f", result);
 					displayScreen.setText(answer);
+		
 				}
-				
-				
+				  System.out.println(firstNum);
+				  System.out.println(secondNum);
+				  //System.out.println(String.format("%f", firstNum+secondNum));
+				  System.out.println(result);
+
 			}
 		});
 		
-		JButton btnSub = new JButton("-");
-		btnSub.addActionListener(new ActionListener() {
+		JButton btnMRC = new JButton("MRC");
+		btnMRC.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				firstNum = Double.parseDouble(displayScreen.getText());
-				displayScreen.setText("");
-				symbole = "-";
 			}
-		});
+		}); 
 		
-		JButton btnPlus = new JButton("+");
-		btnPlus.addActionListener(new ActionListener() {
+		JButton btnM_plus = new JButton("M+");
+		btnM_plus.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				firstNum = Double.parseDouble(displayScreen.getText());
-				displayScreen.setText("");
-				symbole = "+";
+
 			}
-		});
+		}); 
+		
+		JButton btnM_sub = new JButton("M-");
+		btnM_sub.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});  
+		
+
 		GroupLayout gl_panel_2 = new GroupLayout(panel_2);
 		gl_panel_2.setHorizontalGroup(
 			gl_panel_2.createParallelGroup(Alignment.LEADING)
