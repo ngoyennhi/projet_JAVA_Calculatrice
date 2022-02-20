@@ -26,6 +26,8 @@ public class CalculatorSamSar {
 	//Attribut prive: frame de type JFame
 	// Cela permet de créer une frame c"est à dire le cadre de l"application.
 	private JFrame frame;
+private int k = 1;
+private static double m1;
 
 	double firstNum;
 	double secondNum;
@@ -33,8 +35,6 @@ public class CalculatorSamSar {
 	String symbole;
 	String answer;
 	double memoryNum;
-	
-	private boolean clicOperation = false, update = false;
 	
 	/**
 	 * Launch the application.
@@ -346,18 +346,15 @@ public class CalculatorSamSar {
 					
 				} else if (symbole == "-") {
 					result = firstNum - secondNum;
-					answer = String.format("%.2f", result);
-					displayScreen.setText(answer);
+					displayScreen.setText(String.valueOf(result));
 	
 				} else if (symbole == "x") {
 					result = firstNum*secondNum;
-					answer = String.format("%.2f", result);
-					displayScreen.setText(answer);
+					displayScreen.setText(String.valueOf(result));
 				
 				} else if (symbole == "÷") {
 					result = firstNum/secondNum;
-					answer = String.format("%.2f", result);
-					displayScreen.setText(answer);
+					displayScreen.setText(String.valueOf(result));
 				} 
 			}
 		});
@@ -365,7 +362,6 @@ public class CalculatorSamSar {
 		JButton btnMRC = new JButton("MRC");
 		btnMRC.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				   double m1 = 0;
 				   displayScreen.setText("");
 				   displayScreen.setText(displayScreen.getText() + m1);
 			}
@@ -375,19 +371,40 @@ public class CalculatorSamSar {
 		JButton btnM_plus = new JButton("M+");
 		btnM_plus.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				result += Double.parseDouble( displayScreen.getText());
-		                displayScreen.setText("" + result);
-		            }
+				if(displayScreen.getText() == "") {
+					m1 = 0;
+					displayScreen.setText(" ");
+					} 
+				else {
+					if(k==1) {
+					m1 = Double.parseDouble(displayScreen.getText());
+					k++;
+				} else {
+					m1+=Double.parseDouble(displayScreen.getText());
+					displayScreen.setText(" ");
+				
+		            }   }}
+
 			}); 
 		
 		
 		JButton btnM_sub = new JButton("M-");
 		btnM_sub.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-	                result -= Double.parseDouble(displayScreen.getText());
-	                displayScreen.setText("" + result);
-	            }
-			});  
+				if(displayScreen.getText() == "") {
+					m1 = 0;
+					displayScreen.setText(" ");
+					} 
+				else {
+				if(k==1) {
+					m1 = Double.parseDouble(displayScreen.getText());
+					k++;
+				} else {
+					m1-=Double.parseDouble(displayScreen.getText());
+					displayScreen.setText(" ");
+				
+		            }   } }
+			}); 
 		
 
 		GroupLayout gl_panel_2 = new GroupLayout(panel_2);
