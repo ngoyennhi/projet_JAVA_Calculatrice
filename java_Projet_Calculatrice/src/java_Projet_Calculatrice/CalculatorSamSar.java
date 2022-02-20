@@ -32,6 +32,8 @@ public class CalculatorSamSar {
 	double result;
 	String symbole;
 	String answer;
+	double memoryNum;
+	
 	private boolean clicOperation = false, update = false;
 	
 	/**
@@ -357,30 +359,35 @@ public class CalculatorSamSar {
 					answer = String.format("%.2f", result);
 					displayScreen.setText(answer);
 				} 
-			
 			}
 		});
 		
 		JButton btnMRC = new JButton("MRC");
 		btnMRC.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				   double m1 = 0;
+				   displayScreen.setText("");
+				   displayScreen.setText(displayScreen.getText() + m1);
 			}
+			
 		}); 
-		
+
 		JButton btnM_plus = new JButton("M+");
 		btnM_plus.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
-			}
-		}); 
+				result += Double.parseDouble( displayScreen.getText());
+		                displayScreen.setText("" + result);
+		            }
+			}); 
+		
 		
 		JButton btnM_sub = new JButton("M-");
 		btnM_sub.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-			}
-		});  
-		
+	                result -= Double.parseDouble(displayScreen.getText());
+	                displayScreen.setText("" + result);
+	            }
+			});  
 		
 
 		GroupLayout gl_panel_2 = new GroupLayout(panel_2);
