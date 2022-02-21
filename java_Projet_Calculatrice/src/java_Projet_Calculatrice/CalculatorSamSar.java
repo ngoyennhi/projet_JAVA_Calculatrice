@@ -23,23 +23,23 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class CalculatorSamSar {
 
-	//Attribut prive: frame de type JFame
-	// Cela permet de créer une frame c"est à dire le cadre de l"application.
+	//Private attribute: frame of type JFrame // This allows you to create a frame, i.e. the framework of the application.
 	private JFrame frame;
-private int k = 1;
-private static double m1;
-
-	double firstNum;
-	double secondNum;
-	double result;
-	String symbole;
-	String answer;
-	double memoryNum;
 	
+	private double firstNum;
+	private double secondNum;
+	private double result;
+	// the operations + - * ÷
+	private String symbole;
+	
+	// variables of boutons M+ M- MRC
+	private int k = 1;
+	private static double m1;	
+
 	/**
 	 * Launch the application.
 	 */
-	//Methode main qui est lancer pour l"execution du programme
+	// Main method which is launched for the execution of the program
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -56,52 +56,11 @@ private static double m1;
 	/**
 	 * Create the application.
 	 */
-	// Constructeur qui est appele dans le main 
+	// Constructor which is called in the main
 	public CalculatorSamSar() {
-//		initialize();
 		calculatriceBtn();
 	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	//Methode initialize qui est appele dans le constructeur
-//	private void initialize() {
-//		frame = new JFrame();
-//		frame.setBounds(0, 0, 600, 300);
-//		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//		
-////		 command + shift + C pour mettre en commentaire les lignes de code
-//		JPanel panel_container = new JPanel();
-//		panel_container.setBackground(Color.PINK);
-//		panel_container.setForeground(Color.BLACK);
-//		frame.getContentPane().add(panel_container, BorderLayout.CENTER);
-//		panel_container.setLayout(null);
-//		
-//		input_title = new JTextField();
-//		input_title.setBounds(267, 124, 76, 26);
-//		panel_container.add(input_title);
-//		input_title.setColumns(10);
-//		
-//		JLabel label_title = new JLabel("Hello SamSar!");
-//		label_title.setBounds(25, 17, 555, 43);
-//		panel_container.add(label_title);
-//		
-//		JButton btnNewButton = new JButton("OK");
-//		btnNewButton.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent e) {
-//				//On stock le contenu de l"input dans la valeur title qui est de type string avec getText()
-//
-//				  String title = input_title.getText();   
-//				  // On modifie le texte du label dont le nom de variable est label_title avec setTitle()
-//			      label_title.setText(btnNewButton.getText()+ " "+ title);
-//			}
-//			
-//		});
-//		btnNewButton.setBounds(355, 124, 58, 29);
-//		panel_container.add(btnNewButton);
-//	}
-	
 	private void calculatriceBtn() {
 		frame = new JFrame("Calculator SamSar");
 		frame.getContentPane().setBackground(Color.WHITE);
@@ -118,7 +77,7 @@ private static double m1;
 		panel.add(panel_1);
 		panel_1.setLayout(null);
 		
-	// display
+		// display screen 
 		JLabel displayScreen = new JLabel();
 		displayScreen.setBounds(6, 6, 291, 68);
 		panel_1.add(displayScreen);
@@ -130,8 +89,6 @@ private static double m1;
 		/**
 		 * Block of the buttons	
 		 */
-
-		
 		JPanel panel_2 = new JPanel();
 		panel_2.setBounds(6, 150, 338, 327);
 		panel.add(panel_2);		
@@ -139,7 +96,6 @@ private static double m1;
 		/**
 		 * The Buttons of Numbers
 		 */
-				
 		JButton btn0 = new JButton("0");
 		btn0.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -222,7 +178,7 @@ private static double m1;
 			}
 		}); 
  		
-		
+		// Button DOT , ex: 23.34 , 123.23
 		JButton btnDot = new JButton(".");
 		btnDot.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -233,19 +189,22 @@ private static double m1;
 					String EnterNumber = displayScreen.getText() + ".";
 					displayScreen.setText(EnterNumber); 
 				}
-			
 			}
 		});
+		
 		/**
 		 * The Buttons of Fonctions
 		 */
 		
+		// button CE : backSpace
 		JButton btnCE = new JButton("CE");
 		btnCE.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String backSpace = null;
 				if(displayScreen.getText().length() > 0) {
+					// get Text from Screen 
 					StringBuilder strB = new StringBuilder(displayScreen.getText()); 
+					// delete one by one character of Text
 					strB.deleteCharAt(displayScreen.getText().length()-1);
 					backSpace = strB.toString();
 					displayScreen.setText(backSpace);
@@ -253,6 +212,7 @@ private static double m1;
 			}
 		}); 
 		
+		// button ON_C : to reset at 0 / to start calcul 
 		JButton btnON_C = new JButton("ON/C");
 		btnON_C.setForeground(Color.RED);
 		btnON_C.setBackground(Color.RED);
@@ -263,10 +223,10 @@ private static double m1;
 			secondNum = 0;
 			result = 0;
 			symbole = "";
-			answer = "";
 			}
 		}); 
 		
+		// button Percent %
 		JButton btnPercent = new JButton("%");
 		btnPercent.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -275,6 +235,7 @@ private static double m1;
 			}
 		}); 	
 		
+		// button SQRT 
 		JButton btnSQRT = new JButton("√A");
 		btnSQRT.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -283,6 +244,7 @@ private static double m1;
 			}
 		}); 
 		
+		// button subtract
 		JButton btnSub = new JButton("-");
 		btnSub.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -292,6 +254,7 @@ private static double m1;
 			}
 		});
 		
+		// button add
 		JButton btnPlus = new JButton("+");
 		btnPlus.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -300,6 +263,8 @@ private static double m1;
 				symbole = "+";
 			}
 		});
+		
+		// button multiply
 		JButton btnMulti = new JButton("x");
 		btnMulti.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -309,6 +274,7 @@ private static double m1;
 			}
 		});
 		
+		// button to convert a number into negatif or positive 
 		JButton btnPlusSub = new JButton("+/-");
 		btnPlusSub.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -319,8 +285,7 @@ private static double m1;
 			}
 		});
 		
-	
-		 
+	// button divide
 		JButton btnDev = new JButton("÷");
 		btnDev.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -334,10 +299,10 @@ private static double m1;
 			}
 		});
 		
+		// button egal : it has the relationship with the process of the buttons + - * ÷
 		JButton btnEgal = new JButton("=");
 		btnEgal.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String answer ="";
 				result = 0;
 				secondNum = Double.parseDouble(displayScreen.getText());
 				if(symbole == "+") {
@@ -359,6 +324,11 @@ private static double m1;
 			}
 		});
 		
+		/**
+		 *  the buttons "memory" 
+		 */
+		
+		// Button MRC: to show the result memoried
 		JButton btnMRC = new JButton("MRC");
 		btnMRC.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -368,6 +338,7 @@ private static double m1;
 			
 		}); 
 
+		// Button M+ to add a value into memory 
 		JButton btnM_plus = new JButton("M+");
 		btnM_plus.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -387,6 +358,7 @@ private static double m1;
 
 			}); 
 		
+		// Button M- to subtract a value from memory 
 		
 		JButton btnM_sub = new JButton("M-");
 		btnM_sub.addActionListener(new ActionListener() {
@@ -406,7 +378,7 @@ private static double m1;
 		            }   } }
 			}); 
 		
-
+// The grid position of the buttons
 		GroupLayout gl_panel_2 = new GroupLayout(panel_2);
 		gl_panel_2.setHorizontalGroup(
 			gl_panel_2.createParallelGroup(Alignment.LEADING)
